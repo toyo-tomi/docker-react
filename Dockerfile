@@ -20,6 +20,8 @@ RUN npm run build
 # any single block/stage/phase can only have one FROM statement.
 FROM nginx
 
+EXPOSE 80
+
 # copy over the 'build' folder into this new stage (container) we're putting together.
 # we're saying that we want to copy over something from that other phase (stage) that we were just working on.
 # in this case from the 'builder' phase.
