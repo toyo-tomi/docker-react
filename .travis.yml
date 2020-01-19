@@ -11,4 +11,4 @@ before_install:
 # commands that actually run our test suite
 # -- --coverage helps exit the test suite (so it doesn't waits for input) and presents our code coverage inside the project.
 script:
-  - docker run toyo-tomi/docker-react npm run test -- --coverage
+  - docker run -e CI=true toyo-tomi/docker-react npm run test -- --coverage
