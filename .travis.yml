@@ -12,3 +12,18 @@ before_install:
 # -- --coverage helps exit the test suite (so it doesn't waits for input) and presents our code coverage inside the project.
 script:
   - docker run -e CI=true toyo-tomi/docker-react npm run test -- --coverage
+
+# configuration for how to deploy to AWS
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-023793650799"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: 
+    secure: "$AWS_ACCESS_KEY"
+  secret_access_key: 
+    secure: "$AWS_SECRET_ACCESS_KEY"
