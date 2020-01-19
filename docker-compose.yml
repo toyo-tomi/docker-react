@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  web:
+    # overriding dockerfile selection
+    build:
+      # where we want all the files and folders for this image to be pulled from.
+      context: .
+      # location of the Dockerfile that will be used to construct this image.
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - "/app/node_modules"
+      - ".:/app"
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - "/app/node_modules"
+      - ".:/app"
+    # override the starting command when this 'test' -service is created.
+    command: ["npm", "run", "test"]
