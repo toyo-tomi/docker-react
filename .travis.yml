@@ -1,0 +1,14 @@
+# we need super user permissions.
+sudo: required
+
+services: 
+  - docker
+
+# series of setup that needs to occur before we run our tests.
+before_install:
+  - docker build -t toyo-tomi/docker-react -f Dockerfile.dev .
+
+# commands that actually run our test suite
+# -- --coverage helps exit the test suite (so it doesn't waits for input) and presents our code coverage inside the project.
+script:
+  - docker run toyo-tomi/docker-react npm run test -- --coverage
